@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://mju1ga8hdhne"]
+[gd_scene load_steps=6 format=3 uid="uid://mju1ga8hdhne"]
 
 [ext_resource type="Texture2D" uid="uid://cx6oxcqh15ax3" path="res://icon.svg" id="1_7j15b"]
+[ext_resource type="Script" path="res://camera_follow.gd" id="1_ufxyn"]
 [ext_resource type="Script" path="res://Scripts/sprite_2d.gd" id="2_pkwu1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhf00"]
@@ -11,6 +12,11 @@ size = Vector2(121, 116)
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(556, 296)
+zoom = Vector2(-0.505, -0.505)
+script = ExtResource("1_ufxyn")
+
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(175, 177)
 script = ExtResource("2_pkwu1")
@@ -19,7 +25,7 @@ script = ExtResource("2_pkwu1")
 position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_jhf00")
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+[node name="PlayerSprite" type="Sprite2D" parent="RigidBody2D"]
 texture = ExtResource("1_7j15b")
 
 [node name="RigidBody2D2" type="RigidBody2D" parent="."]
