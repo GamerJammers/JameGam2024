@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://mju1ga8hdhne"]
+[gd_scene load_steps=7 format=3 uid="uid://mju1ga8hdhne"]
 
 [ext_resource type="Texture2D" uid="uid://cx6oxcqh15ax3" path="res://icon.svg" id="1_7j15b"]
 [ext_resource type="Script" path="res://camera_follow.gd" id="1_ufxyn"]
 [ext_resource type="Script" path="res://Scripts/sprite_2d.gd" id="2_pkwu1"]
+[ext_resource type="Texture2D" uid="uid://rmtx55b21j0o" path="res://enemy1.png" id="4_3ryk4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhf00"]
 size = Vector2(122, 120)
@@ -36,4 +37,4 @@ position = Vector2(-1.5, -1)
 shape = SubResource("RectangleShape2D_mnul0")
 
 [node name="Sprite2D2" type="Sprite2D" parent="RigidBody2D2"]
-texture = ExtResource("1_7j15b")
+texture = ExtResource("4_3ryk4")
