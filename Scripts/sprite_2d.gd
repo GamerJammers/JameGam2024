@@ -1,19 +1,19 @@
-extends Sprite2D
+extends RigidBody2D
 
 var speed = 400
 var angular_speed = PI
 
-func _process(delta):
-	var direction = 0
-	if Input.is_action_pressed("ui_left"):
-		direction = -1
-	if Input.is_action_pressed("ui_right"):
-		direction = 1
+var thrust = Vector2(0, -250)
+var torque = 20000
 
-	rotation += angular_speed * direction * delta
-
-	var velocity = Vector2.ZERO
+func _integrate_forces(state):
 	if Input.is_action_pressed("ui_up"):
-		velocity = Vector2.UP.rotated(rotation) * speed
-
-	position += velocity * delta
+		state.apply_force(thrust.rotated(rotation))
+	else:
+		state.apply_force(Vector2())
+	var rotation_direction = 0
+	if Input.is_action_pressed("ui_right"):
+		rotation_direction += 1
+	if Input.is_action_pressed("ui_left"):
+		rotation_direction -= 1
+	state.apply_torque(rotation_direction * torque)
