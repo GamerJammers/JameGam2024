@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cx6oxcqh15ax3" path="res://icon.svg" id="1_7j15b"]
 [ext_resource type="Script" path="res://camera_follow.gd" id="1_ufxyn"]
-[ext_resource type="PackedScene" uid="uid://dqbyawad4dphx" path="res://pizza.tscn" id="3_a2rh8"]
+[ext_resource type="PackedScene" uid="uid://diu7uad3aonif" path="res://pizza.tscn" id="3_a2rh8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnul0"]
 size = Vector2(121, 116)

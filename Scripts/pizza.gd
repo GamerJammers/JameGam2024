@@ -15,7 +15,6 @@ var boosterLeft
 var boosterRight
 
 func _ready():
-	cannon = get_node("./Sprite2D/Cannon")
 	boosterLeft = get_node("./BoosterLeft")
 	boosterRight = get_node("./BoosterRight")
 
@@ -27,11 +26,14 @@ func _process(delta):
 
 func _integrate_forces(state):
 	var pressing_up = Input.is_action_pressed("ui_up")
+	var pressing_down = Input.is_action_pressed("ui_down")
 	var pressing_right = Input.is_action_pressed("ui_right")
 	var pressing_left = Input.is_action_pressed("ui_left")
 
 	if pressing_up and linear_velocity.length() <= max_velocity:
 		state.apply_force(thrust.rotated(rotation))
+	elif pressing_down and linear_velocity.length() <= max_velocity:
+		state.apply_force(-thrust.rotated(rotation))
 	else:
 		state.apply_force(Vector2())
 		
@@ -45,8 +47,8 @@ func _integrate_forces(state):
 		
 	state.apply_torque(rotation_direction * torque)
 	
-	boosterLeft.emitting = pressing_up or pressing_left 
-	boosterRight.emitting = pressing_up or pressing_right
+	boosterLeft.emitting = pressing_down or pressing_up or pressing_left 
+	boosterRight.emitting = pressing_down or pressing_up or pressing_right
 	 
 
 
@@ -63,6 +65,7 @@ func shoot():
 		var sprite = Sprite2D.new()
 		var texture = preload("res://sprites/pepperoni.png")  # Load a texture
 		sprite.texture = texture
+		sprite.z_index = -1
 		
 		rigid_body.add_child(collision_shape)
 		rigid_body.add_child(sprite)
