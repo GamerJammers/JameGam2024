@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhnxwpl70dfis"]
+
+[ext_resource type="Script" path="res://Scripts/pizza.gd" id="1_3lw4o"]
+[ext_resource type="Texture2D" uid="uid://crv54cvo0ing4" path="res://sprites/breadstick.png" id="2_xm8cr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3pm60"]
+size = Vector2(108, 256)
+
+[node name="Player" type="Node2D"]
+
+[node name="Container" type="Node2D" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Container"]
+collision_layer = 2
+collision_mask = 59
+script = ExtResource("1_3lw4o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Container/RigidBody2D"]
+texture = ExtResource("2_xm8cr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/RigidBody2D"]
+shape = SubResource("RectangleShape2D_3pm60")

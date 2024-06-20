@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbdmgoijp8kqm"
-path="res://.godot/imported/space_laser.png-bd405472d2061d34f615e8926f7f8343.ctex"
+uid="uid://cyl84ufawfmg7"
+path="res://.godot/imported/pizza.png-30be48a686af3e269084bbfb57128701.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://space_laser.png"
-dest_files=["res://.godot/imported/space_laser.png-bd405472d2061d34f615e8926f7f8343.ctex"]
+source_file="res://sprites/pizza.png"
+dest_files=["res://.godot/imported/pizza.png-30be48a686af3e269084bbfb57128701.ctex"]
 
 [params]
 

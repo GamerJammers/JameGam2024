@@ -3,12 +3,16 @@ extends RigidBody2D
 var speed = 400
 var angular_speed = PI
 
-var thrust = Vector2(0, -250)
+var thrust = Vector2(0, -500)
 var torque = 20000
+var max_velocity = 750
+
+var canShootInterval = .5
+var canShootTimeout = 10000
 
 func shoot():
-	if timePassed > (bananas/1000) + .2:
-		timePassed = 0;
+	if canShootTimeout > canShootInterval:
+		canShootTimeout = 0;
 		
 		var rigid_body = RigidBody2D.new()
 		var collision_shape = CollisionShape2D.new()
@@ -17,16 +21,18 @@ func shoot():
 		collision_shape.shape = shape
 		
 		var sprite = Sprite2D.new()
-		var texture = preload("res://space_laser.png")  # Load a texture
+		var texture = preload("res://sprites/pepperoni.png")  # Load a texture
 		sprite.texture = texture
 		
 		rigid_body.add_child(collision_shape)
 		rigid_body.add_child(sprite)
+		rigid_body.set_collision_layer_value(1, false)
+		rigid_body.set_collision_layer_value(3, true)
 	
 		get_tree().get_root().add_child(rigid_body)
 		
 		var direction_vector = Vector2.UP.rotated(rotation)
-		var target_position = position + direction_vector * 90.0  # 1 unit above
+		var target_position = position + direction_vector * 150.0  # 1 unit above
 		
 		# Optionally, set initial position and properties
 		rigid_body.position = target_position  # Set initial position
@@ -35,20 +41,18 @@ func shoot():
 		rigid_body.linear_damp = 0
 		rigid_body.angular_damp = 0
 
-var bananas = 300
-var timePassed = 10000
-
 func _process(delta):
-	timePassed += delta
+	canShootTimeout += delta
 	
 	if Input.is_action_pressed("ui_select"):
 		shoot()
 
 func _integrate_forces(state):
-	if Input.is_action_pressed("ui_up"):
-		state.apply_force(thrust.rotated(rotation))
-	else:
-		state.apply_force(Vector2())
+	if linear_velocity.length() <= max_velocity: 
+		if Input.is_action_pressed("ui_up"):
+			state.apply_force(thrust.rotated(rotation))
+		else:
+			state.apply_force(Vector2())
 		
 	var rotation_direction = 0
 	if Input.is_action_pressed("ui_right"):
