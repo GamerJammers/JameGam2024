@@ -58,6 +58,15 @@ ui_down={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="player"
+2d_physics/layer_3="player_lasers"
+2d_physics/layer_4="enemies"
+2d_physics/layer_5="enemies_lasers"
+2d_physics/layer_6="space_junk"
+
 [physics]
 
 2d/default_gravity=500.0
