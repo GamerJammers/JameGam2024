@@ -2,7 +2,7 @@ extends Node
 
 class_name GameManagerSingleton
 
-var junk: int = 0
+var junk: int = 50
 var currency: int = 0
 
 func _ready():
