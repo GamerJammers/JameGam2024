@@ -6,6 +6,6 @@ var playerBody
 func _ready():
 	playerBody = get_node("../Player/Container/RigidBody2D")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	position.x = playerBody.position.x
 	position.y = playerBody.position.y

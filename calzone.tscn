@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://i38481l4bj7g"]
+[gd_scene load_steps=4 format=3 uid="uid://i38481l4bj7g"]
 
 [ext_resource type="Script" path="res://Scripts/pizza.gd" id="1_5miv2"]
 [ext_resource type="Texture2D" uid="uid://dia4v40cl6ngc" path="res://sprites/calzone.png" id="2_4slpt"]
+[ext_resource type="Texture2D" uid="uid://oefh655bosy8" path="res://sprites/cheesy_particles.png" id="3_auky1"]
 
 [node name="Player" type="Node2D"]
 
@@ -17,3 +18,33 @@ texture = ExtResource("2_4slpt")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Container/RigidBody2D"]
 polygon = PackedVector2Array(-2, -58, -42, -53, -75, -32, -100, -7, -129, 50, -129, 127, 128, 127, 128, 41, 104, -3, 78, -30, 41, -53)
+
+[node name="BoosterLeft" type="CPUParticles2D" parent="Container/RigidBody2D"]
+z_index = -1
+position = Vector2(-130, 112)
+emitting = false
+randomness = 0.44
+texture = ExtResource("3_auky1")
+direction = Vector2(-1, 0)
+spread = 87.72
+gravity = Vector2(0, 0)
+initial_velocity_min = 132.91
+initial_velocity_max = 322.79
+angular_velocity_min = 408.78
+angular_velocity_max = 455.7
+
+[node name="BoosterRight" type="CPUParticles2D" parent="Container/RigidBody2D"]
+z_index = -1
+position = Vector2(128, 115)
+emitting = false
+randomness = 0.55
+texture = ExtResource("3_auky1")
+spread = 87.72
+gravity = Vector2(0, 0)
+initial_velocity_min = 132.91
+initial_velocity_max = 322.79
+angular_velocity_min = 408.78
+angular_velocity_max = 455.7
+
+[node name="Cannon" type="Node2D" parent="Container/RigidBody2D"]
+position = Vector2(-1, -53)

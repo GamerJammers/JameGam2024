@@ -10,6 +10,46 @@ var max_velocity = 750
 var canShootInterval = .5
 var canShootTimeout = 10000
 
+var cannon
+var boosterLeft
+var boosterRight
+
+func _ready():
+	cannon = get_node("./Sprite2D/Cannon")
+	boosterLeft = get_node("./BoosterLeft")
+	boosterRight = get_node("./BoosterRight")
+
+func _process(delta):
+	canShootTimeout += delta
+	
+	if Input.is_action_pressed("ui_select"):
+		shoot()
+
+func _integrate_forces(state):
+	var pressing_up = Input.is_action_pressed("ui_up")
+	var pressing_right = Input.is_action_pressed("ui_right")
+	var pressing_left = Input.is_action_pressed("ui_left")
+
+	if pressing_up and linear_velocity.length() <= max_velocity:
+		state.apply_force(thrust.rotated(rotation))
+	else:
+		state.apply_force(Vector2())
+		
+	var rotation_direction = 0
+	if pressing_right:
+		rotation_direction += 1
+		boosterRight.emitting = true  
+	if pressing_left:
+		rotation_direction -= 1
+		boosterLeft.emitting = true  
+		
+	state.apply_torque(rotation_direction * torque)
+	
+	boosterLeft.emitting = pressing_up or pressing_left 
+	boosterRight.emitting = pressing_up or pressing_right
+	 
+
+
 func shoot():
 	if canShootTimeout > canShootInterval:
 		canShootTimeout = 0;
@@ -32,32 +72,11 @@ func shoot():
 		get_tree().get_root().add_child(rigid_body)
 		
 		var direction_vector = Vector2.UP.rotated(rotation)
-		var target_position = position + direction_vector * 150.0  # 1 unit above
+		var target_position = position + direction_vector * 1  # 1 unit above
 		
 		# Optionally, set initial position and properties
 		rigid_body.position = target_position  # Set initial position
-		rigid_body.mass = 1.0  # Set mass
+		rigid_body.mass = 0.2  # Set mass
 		rigid_body.apply_impulse(linear_velocity + direction_vector * 1000, target_position)
 		rigid_body.linear_damp = 0
 		rigid_body.angular_damp = 0
-
-func _process(delta):
-	canShootTimeout += delta
-	
-	if Input.is_action_pressed("ui_select"):
-		shoot()
-
-func _integrate_forces(state):
-	if linear_velocity.length() <= max_velocity: 
-		if Input.is_action_pressed("ui_up"):
-			state.apply_force(thrust.rotated(rotation))
-		else:
-			state.apply_force(Vector2())
-		
-	var rotation_direction = 0
-	if Input.is_action_pressed("ui_right"):
-		rotation_direction += 1
-	if Input.is_action_pressed("ui_left"):
-		rotation_direction -= 1
-		
-	state.apply_torque(rotation_direction * torque)
