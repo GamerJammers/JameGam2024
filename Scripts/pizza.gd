@@ -20,7 +20,7 @@ func _ready():
 
 func _process(delta):
 	canShootTimeout += delta
-	
+
 	if Input.is_action_pressed("ui_select"):
 		shoot()
 
@@ -36,7 +36,7 @@ func _integrate_forces(state):
 		state.apply_force(-thrust.rotated(rotation))
 	else:
 		state.apply_force(Vector2())
-		
+
 	var rotation_direction = 0
 	if pressing_right:
 		rotation_direction += 1
@@ -44,39 +44,37 @@ func _integrate_forces(state):
 	if pressing_left:
 		rotation_direction -= 1
 		boosterLeft.emitting = true  
-		
+
 	state.apply_torque(rotation_direction * torque)
-	
+
 	boosterLeft.emitting = pressing_down or pressing_up or pressing_left 
 	boosterRight.emitting = pressing_down or pressing_up or pressing_right
-	 
-
 
 func shoot():
 	if canShootTimeout > canShootInterval:
 		canShootTimeout = 0;
-		
+
 		var rigid_body = RigidBody2D.new()
 		var collision_shape = CollisionShape2D.new()
 		var shape = CircleShape2D.new()
 		shape.radius = 20
 		collision_shape.shape = shape
-		
+
 		var sprite = Sprite2D.new()
 		var texture = preload("res://sprites/pepperoni.png")  # Load a texture
 		sprite.texture = texture
 		sprite.z_index = -1
-		
+
 		rigid_body.add_child(collision_shape)
 		rigid_body.add_child(sprite)
 		rigid_body.set_collision_layer_value(1, false)
 		rigid_body.set_collision_layer_value(3, true)
-	
+
 		get_tree().get_root().add_child(rigid_body)
 		
 		var direction_vector = Vector2.UP.rotated(rotation)
 		var target_position = position + direction_vector * 1  # 1 unit above
-		
+
 		# Optionally, set initial position and properties
 		rigid_body.position = target_position  # Set initial position
 		rigid_body.mass = 0.2  # Set mass
