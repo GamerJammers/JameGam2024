@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://jdg1th4c2jwk"]
+
+[ext_resource type="Script" path="res://Scripts/RefineButton.gd" id="1_5pihi"]
+[ext_resource type="Script" path="res://Scripts/CurrencyUI.gd" id="2_hvag0"]
+[ext_resource type="Script" path="res://Scripts/JunkUI.gd" id="3_retuq"]
+[ext_resource type="Script" path="res://Scripts/ResetButton.gd" id="4_7hn33"]
+
+[node name="Refinery" type="Node2D"]
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_left = 389.0
+offset_top = 86.0
+offset_right = 463.0
+offset_bottom = 132.0
+text = "Refinery"
+
+[node name="Refine" type="Button" parent="."]
+offset_left = 513.0
+offset_top = 89.0
+offset_right = 595.0
+offset_bottom = 132.0
+text = "Refine All"
+script = ExtResource("1_5pihi")
+
+[node name="Currency" type="RichTextLabel" parent="."]
+offset_left = 383.0
+offset_top = 155.0
+offset_right = 508.0
+offset_bottom = 201.0
+text = "Currency"
+script = ExtResource("2_hvag0")
+
+[node name="Junk" type="RichTextLabel" parent="."]
+offset_left = 387.0
+offset_top = 123.0
+offset_right = 504.0
+offset_bottom = 169.0
+text = "Junk"
+script = ExtResource("3_retuq")
+
+[node name="Reset" type="Button" parent="."]
+offset_left = 514.0
+offset_top = 152.0
+offset_right = 596.0
+offset_bottom = 195.0
+text = "Reset"
+script = ExtResource("4_7hn33")
