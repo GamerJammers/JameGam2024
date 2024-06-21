@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 GameManager="*res://Scripts/GameManagerSingleton.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [dotnet]
 
 project/assembly_name="JameGam2024"
