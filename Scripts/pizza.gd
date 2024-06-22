@@ -11,12 +11,10 @@ var canShootInterval = .5
 var canShootTimeout = 10000
 
 var cannon
-var boosterLeft
-var boosterRight
 
-func _ready():
-	boosterLeft = get_node("./BoosterLeft")
-	boosterRight = get_node("./BoosterRight")
+@onready var collision2D = $Collision2D
+@onready var boosterLeft = $BoosterLeft
+@onready var boosterRight = $BoosterRight
 
 func _process(delta):
 	canShootTimeout += delta

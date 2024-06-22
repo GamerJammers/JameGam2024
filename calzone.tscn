@@ -16,7 +16,7 @@ script = ExtResource("1_5miv2")
 [node name="Sprite2D" type="Sprite2D" parent="Container/RigidBody2D"]
 texture = ExtResource("2_4slpt")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Container/RigidBody2D"]
+[node name="Collision2D" type="CollisionPolygon2D" parent="Container/RigidBody2D"]
 polygon = PackedVector2Array(-2, -58, -42, -53, -75, -32, -100, -7, -129, 50, -129, 127, 128, 127, 128, 41, 104, -3, 78, -30, 41, -53)
 
 [node name="BoosterLeft" type="CPUParticles2D" parent="Container/RigidBody2D"]

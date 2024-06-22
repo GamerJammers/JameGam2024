@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://o4pxo15bv4gs"]
+
+[ext_resource type="Texture2D" uid="uid://cyl84ufawfmg7" path="res://sprites/pizza.png" id="1_ha32f"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_hllta"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_hllta")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("1_ha32f")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.45, 0.45)
+polygon = PackedVector2Array(-2, -129, -110, 91, -128, 91, -128, 128, 128, 128, 128, 91, 111, 91)
+
+[node name="Cannon" type="Node2D" parent="."]
+
+[node name="BoosterLeft" type="CPUParticles2D" parent="."]
+position = Vector2(-127, 111)
+
+[node name="BoosterRight" type="CPUParticles2D" parent="."]
+position = Vector2(124, 110)

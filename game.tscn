@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://mju1ga8hdhne"]
 
-[ext_resource type="Texture2D" uid="uid://cx6oxcqh15ax3" path="res://icon.svg" id="1_7j15b"]
-[ext_resource type="Script" path="res://camera_follow.gd" id="1_ufxyn"]
-[ext_resource type="PackedScene" uid="uid://diu7uad3aonif" path="res://pizza.tscn" id="3_a2rh8"]
+[ext_resource type="Script" path="res://camera_follow.gd" id="2_bxy52"]
+[ext_resource type="Texture2D" uid="uid://cx6oxcqh15ax3" path="res://icon.svg" id="3_1mrru"]
+[ext_resource type="PackedScene" uid="uid://o4pxo15bv4gs" path="res://scenes/player.tscn" id="4_pys3x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnul0"]
 size = Vector2(121, 116)
@@ -10,9 +10,8 @@ size = Vector2(121, 116)
 [node name="Node2D" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(556, 296)
-zoom = Vector2(0.41, 0.41)
-script = ExtResource("1_ufxyn")
+position = Vector2(573, 330)
+script = ExtResource("2_bxy52")
 
 [node name="RigidBody2D2" type="RigidBody2D" parent="."]
 position = Vector2(779, 292)
@@ -24,6 +23,7 @@ position = Vector2(-1.5, -1)
 shape = SubResource("RectangleShape2D_mnul0")
 
 [node name="Sprite2D2" type="Sprite2D" parent="RigidBody2D2"]
-texture = ExtResource("1_7j15b")
+texture = ExtResource("3_1mrru")
 
-[node name="Player" parent="." instance=ExtResource("3_a2rh8")]
+[node name="Player" parent="." instance=ExtResource("4_pys3x")]
+position = Vector2(339, 354)
