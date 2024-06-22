@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbddlcxymik4m"]
+
+[ext_resource type="Texture2D" uid="uid://bgojb3k5ffhhb" path="res://sprites/pepperoni.png" id="1_w60ex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rpta6"]
+radius = 16.0312
+
+[node name="Laser" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 9
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+z_index = -1
+texture = ExtResource("1_w60ex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_rpta6")

@@ -1,18 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbddlcxymik4m"]
+[gd_scene load_steps=4 format=3 uid="uid://dcmo42opxsa12"]
 
+[ext_resource type="Script" path="res://Scripts/laser.gd" id="1_lmre0"]
 [ext_resource type="Texture2D" uid="uid://bgojb3k5ffhhb" path="res://sprites/pepperoni.png" id="1_w60ex"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rpta6"]
-radius = 16.0312
+[sub_resource type="CircleShape2D" id="CircleShape2D_vdhbo"]
 
-[node name="Laser" type="Node2D"]
+[node name="Laser" type="Area2D"]
+script = ExtResource("1_lmre0")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-collision_layer = 9
-
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-z_index = -1
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.63, 0.63)
 texture = ExtResource("1_w60ex")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("CircleShape2D_rpta6")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vdhbo")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.685, 0.685)

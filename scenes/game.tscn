@@ -1,16 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://mju1ga8hdhne"]
+[gd_scene load_steps=7 format=3 uid="uid://mju1ga8hdhne"]
 
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_ki1rm"]
 [ext_resource type="Script" path="res://camera_follow.gd" id="2_bxy52"]
 [ext_resource type="Texture2D" uid="uid://cx6oxcqh15ax3" path="res://icon.svg" id="3_1mrru"]
 [ext_resource type="PackedScene" uid="uid://o4pxo15bv4gs" path="res://scenes/player.tscn" id="4_pys3x"]
+[ext_resource type="AudioStream" uid="uid://cew2i5et2ah6m" path="res://audio/Pizza.wav" id="5_3fogt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnul0"]
 size = Vector2(121, 116)
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ki1rm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(573, 330)
+position = Vector2(957, 543)
 script = ExtResource("2_bxy52")
 
 [node name="RigidBody2D2" type="RigidBody2D" parent="."]
@@ -27,3 +30,10 @@ texture = ExtResource("3_1mrru")
 
 [node name="Player" parent="." instance=ExtResource("4_pys3x")]
 position = Vector2(339, 354)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Lasers" type="Node" parent="."]
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_3fogt")
