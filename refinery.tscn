@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://jdg1th4c2jwk"]
 
 [ext_resource type="Script" path="res://Scripts/RefineButton.gd" id="1_5pihi"]
-[ext_resource type="Theme" uid="uid://bx55agh2t3s78" path="res://Refinery_Theme.tres" id="1_n2hql"]
+[ext_resource type="Theme" path="res://Refinery_Theme.tres" id="1_n2hql"]
 [ext_resource type="Script" path="res://Scripts/CurrencyUI.gd" id="2_hvag0"]
 [ext_resource type="Script" path="res://Scripts/JunkUI.gd" id="3_retuq"]
 [ext_resource type="Script" path="res://Scripts/ResetButton.gd" id="4_7hn33"]

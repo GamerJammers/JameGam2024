@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfpcye414xeqt"]
+[gd_scene load_steps=4 format=3 uid="uid://b52rtsd1qtluj"]
 
-[ext_resource type="Theme" uid="uid://bx55agh2t3s78" path="res://Refinery_Theme.tres" id="1_1t3o1"]
+[ext_resource type="Theme" path="res://Refinery_Theme.tres" id="1_1t3o1"]
 [ext_resource type="Script" path="res://Scripts/Start Button.gd" id="2_6uclx"]
 [ext_resource type="Script" path="res://Scripts/Exit Button.gd" id="3_p463d"]
 
