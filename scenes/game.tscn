@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://camera_follow.gd" id="2_bxy52"]
 [ext_resource type="Texture2D" uid="uid://cx6oxcqh15ax3" path="res://icon.svg" id="3_1mrru"]
 [ext_resource type="PackedScene" uid="uid://o4pxo15bv4gs" path="res://scenes/player.tscn" id="4_pys3x"]
-[ext_resource type="AudioStream" uid="uid://cew2i5et2ah6m" path="res://audio/Pizza.wav" id="5_3fogt"]
+[ext_resource type="AudioStream" uid="uid://el0jiguuj6o0" path="res://audio/Pizza.wav" id="5_3fogt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnul0"]
 size = Vector2(121, 116)
