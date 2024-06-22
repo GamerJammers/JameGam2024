@@ -9,7 +9,7 @@ signal died
 
 @onready var cannon = $Cannon
 @onready var sprite = $Sprite2D
-@onready var cshape = $CollisionShape2D
+@onready var cshape = $CollisionPolygon2D
 
 var laser_scene = preload("res://scenes/laser.tscn")
 

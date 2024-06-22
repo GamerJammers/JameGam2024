@@ -16,6 +16,7 @@ scale = Vector2(0.45, 0.45)
 polygon = PackedVector2Array(-2, -129, -110, 91, -128, 91, -128, 128, 128, 128, 128, 91, 111, 91)
 
 [node name="Cannon" type="Node2D" parent="."]
+position = Vector2(-1, -72)
 
 [node name="BoosterLeft" type="CPUParticles2D" parent="."]
 z_index = -1

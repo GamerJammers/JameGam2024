@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var lasers = $Lasers
 @onready var player = $Player
+@onready var enemies = $Enemies
+@onready var enemySpawner = $EnemySpawner
+
 #@onready var asteroids = $Asteroids
 #@onready var hud = $UI/HUD
 #@onready var game_over_screen = $UI/GameOverScreen
@@ -10,6 +13,7 @@ extends Node2D
 
 var junk: int = 50
 var currency: int = 0
+var enemy_grunt = preload("res://scenes/enemy_grunt.tscn")
 #var asteroid_scene = preload("res://scenes/asteroid.tscn")
 
 var score := 0:
@@ -22,11 +26,17 @@ var lives: int:
 		lives = value
 		#hud.init_lives(lives)
 
+
 func _ready():
 	#game_over_screen.visible = false
 	score = 0
 	lives = 3
-	print(player)
+	
+	var grunt = enemy_grunt.instantiate()
+	grunt.global_position = enemySpawner.global_position
+	grunt.set_player(player)
+	enemies.add_child(grunt)
+	
 	player.connect("laser_shot", _on_player_laser_shot)
 	player.connect("died", _on_player_died)
 
