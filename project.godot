@@ -11,13 +11,19 @@ config_version=5
 [application]
 
 config/name="JameGam2024"
-run/main_scene="res://node_2d.tscn"
+run/main_scene="res://mainMenu.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*res://Scripts/GameManagerSingleton.gd"
+Global="*res://Scripts/Global.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [dotnet]
 
