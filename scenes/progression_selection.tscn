@@ -1,0 +1,116 @@
+[gd_scene load_steps=4 format=3 uid="uid://c41tqivfjvpu3"]
+
+[ext_resource type="Texture2D" uid="uid://blysrsmum6abv" path="res://sprites/pizza_upgrade_mushrooms.png" id="1_a2mtj"]
+[ext_resource type="Texture2D" uid="uid://bjjul2l10f06" path="res://sprites/pizza_upgrade_pepperoni.png" id="2_dmt2k"]
+[ext_resource type="Texture2D" uid="uid://crdrf6ageo2c0" path="res://sprites/pizza_upgrade_pineapple.png" id="3_e6t6c"]
+
+[node name="ProgressionSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Choose Toppings"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mushroom"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_a2mtj")
+stretch_mode = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(152, 0)
+layout_mode = 2
+text = "Increase your health by $random percetange 
+"
+fit_content = true
+autowrap_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Pineapple	"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+uppercase = true
+
+[node name="TextureRect3" type="TextureRect" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0.245, 0)
+layout_mode = 2
+texture = ExtResource("3_e6t6c")
+stretch_mode = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer2"]
+clip_contents = false
+custom_minimum_size = Vector2(152, 0)
+layout_mode = 2
+text = "You're laser beam deals $random amount of \"poison\" damage over time
+"
+fit_content = true
+autowrap_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Pepperoni"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="TextureRect2" type="TextureRect" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("2_dmt2k")
+stretch_mode = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer3"]
+clip_contents = false
+custom_minimum_size = Vector2(152, 0)
+layout_mode = 2
+text = "Increase laser damage by $random amount
+"
+fit_content = true
+autowrap_mode = 2

@@ -4,17 +4,15 @@ extends Node2D
 @onready var player = $Player
 @onready var enemies = $Enemies
 @onready var enemySpawner = $EnemySpawner
-
-#@onready var asteroids = $Asteroids
-#@onready var hud = $UI/HUD
-#@onready var game_over_screen = $UI/GameOverScreen
-#@onready var player_spawn_pos = $PlayerSpawnPos
-#@onready var player_spawn_area = $PlayerSpawnPos/PlayerSpawnArea
+@onready var portals = $Portals
 
 var junk: int = 50
 var currency: int = 0
+var Level = preload("res://Scripts/level.gd")
+var Portal = preload("res://Scripts/portal.gd")
 var enemy_grunt = preload("res://scenes/enemy_grunt.tscn")
-#var asteroid_scene = preload("res://scenes/asteroid.tscn")
+
+var level
 
 var score := 0:
 	set(value):
@@ -26,17 +24,17 @@ var lives: int:
 		lives = value
 		#hud.init_lives(lives)
 
-
-
 func _ready():
 	#game_over_screen.visible = false
 	score = 0
 	lives = 3
-	
+	level = Level.new(1, 2, 0, 0)
+
+	#create_portals()
+	spawn_grunt()
+
 	player.connect("laser_shot", _on_player_laser_shot)
 	player.connect("died", _on_player_died)
-	
-	spawn_grunt()
 
 func spawn_grunt():
 	var grunt = enemy_grunt.instantiate()
@@ -47,14 +45,22 @@ func spawn_grunt():
 	enemies.add_child(grunt)
 
 func _grunt_died():
-	spawn_grunt()
+	level.grunt_died()
+	
+	if !level.wave_clear():
+		spawn_grunt()
+	else:
+		get_tree().change_scene_to_file("res://scenes/progression_selection.tscn")
+
+func create_portals():
+	var portal = Portal.new_portal(Color(0,0,1))
+	portals.add_child(portal)
 
 func _on_player_laser_shot(laser):
 	$LaserSound.play()
 	lasers.add_child(laser)
 
 func _laser_collided():
-	print("laser collided")
 	$LaserColliding.play()
 
 func _on_player_died():
