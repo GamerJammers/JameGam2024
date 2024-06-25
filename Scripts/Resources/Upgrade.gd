@@ -5,3 +5,4 @@ class_name Upgrade
 @export var modifiers : Array[StatModifier] = []
 @export var name : String = "Pizza"
 @export var icon : Image = null
+@export var playerSprite : Image = null
