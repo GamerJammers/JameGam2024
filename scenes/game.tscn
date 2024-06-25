@@ -17,6 +17,8 @@ position = Vector2(149, 235)
 
 [node name="Lasers" type="Node" parent="."]
 
+[node name="Portals" type="Node" parent="."]
+
 [node name="EnemySpawner" type="Node2D" parent="."]
 z_index = -1
 position = Vector2(1017, 280)
