@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx6oxcqh15ax3"
-path="res://.godot/imported/icon.svg-964d8c66fbd3bda40c44ca195472a8e1.ctex"
+uid="uid://dqslarodmb8nq"
+path="res://.godot/imported/enemy_grunt.png-985c4be1a97c27032f5898ea72101987.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-964d8c66fbd3bda40c44ca195472a8e1.ctex"]
+source_file="res://sprites/enemy_grunt.png"
+dest_files=["res://.godot/imported/enemy_grunt.png-985c4be1a97c27032f5898ea72101987.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

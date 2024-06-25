@@ -13,7 +13,6 @@ config_version=5
 config/name="JameGam2024"
 run/main_scene="res://mainMenu.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
-config/icon="res://sprites/icon.svg"
 
 [autoload]
 

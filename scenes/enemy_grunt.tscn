@@ -1,18 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://btq52d46341r5"]
 
-[ext_resource type="Script" path="res://scenes/enemy_grunt.gd" id="1_6v1jv"]
-[ext_resource type="Texture2D" uid="uid://cx6oxcqh15ax3" path="res://sprites/icon.svg" id="1_yd2dw"]
+[ext_resource type="Script" path="res://Scripts/enemy_grunt.gd" id="1_hxtxh"]
+[ext_resource type="Texture2D" uid="uid://dqslarodmb8nq" path="res://sprites/enemy_grunt.png" id="2_ranc3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3t8fc"]
-size = Vector2(114, 118)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ij7sw"]
+radius = 64.0
 
 [node name="EnemyGrunt" type="RigidBody2D"]
 collision_layer = 8
 collision_mask = 15
-script = ExtResource("1_6v1jv")
+script = ExtResource("1_hxtxh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_3t8fc")
+shape = SubResource("CircleShape2D_ij7sw")
+debug_color = Color(0.694118, 0.494118, 0, 0.490196)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_yd2dw")
+texture = ExtResource("2_ranc3")

@@ -1,4 +1,4 @@
-class_name Player extends CharacterBody2D
+class_name Player extends RigidBody2D
 
 signal laser_shot(laser)
 signal died
@@ -15,8 +15,33 @@ var laser_scene = preload("res://scenes/laser.tscn")
 
 var shoot_cd = false
 var rate_of_fire = 0.15
+var max_velocity = 1000
 
 var alive := true
+var thrust = Vector2(0, -250)
+var torque = 20000
+
+func _ready():
+	max_contacts_reported = 1
+
+func _integrate_forces(state):
+	if !alive: return
+
+	if Input.is_action_pressed("ui_up"):
+		state.apply_force(thrust.rotated(rotation))
+	elif Input.is_action_pressed("ui_down"):
+		state.apply_force(-thrust.rotated(rotation))
+	else:
+		state.apply_force(Vector2())
+	var rotation_direction = 0
+	if Input.is_action_pressed("ui_right"):
+		rotation_direction += 1
+	if Input.is_action_pressed("ui_left"):
+		rotation_direction -= 1
+	state.apply_torque(rotation_direction * torque)
+	
+	if linear_velocity.length() >= max_velocity:
+		linear_velocity = linear_velocity.normalized() * max_velocity
 
 func _process(delta):
 	if !alive: return
@@ -28,23 +53,9 @@ func _process(delta):
 			await get_tree().create_timer(rate_of_fire).timeout
 			shoot_cd = false
 
+
 func _physics_process(delta):
 	if !alive: return
-	
-	var input_vector := Vector2(0, Input.get_axis("ui_up", "ui_down"))
-	
-	velocity += input_vector.rotated(rotation) * acceleration
-	velocity = velocity.limit_length(max_speed)
-	
-	if Input.is_action_pressed("ui_right"):
-		rotate(deg_to_rad(rotation_speed*delta))
-	if Input.is_action_pressed("ui_left"):
-		rotate(deg_to_rad(-rotation_speed*delta))
-	
-	if input_vector.y == 0:
-		velocity = velocity.move_toward(Vector2.ZERO, 3)
-	
-	move_and_slide()
 	
 	var screen_size = get_viewport_rect().size
 	if global_position.y < 0:
@@ -73,6 +84,5 @@ func respawn(pos):
 	if alive==false:
 		alive = true
 		global_position = pos
-		velocity = Vector2.ZERO
 		sprite.visible = true
 		cshape.set_deferred("disabled", false)

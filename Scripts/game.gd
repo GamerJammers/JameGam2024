@@ -27,22 +27,35 @@ var lives: int:
 		#hud.init_lives(lives)
 
 
+
 func _ready():
 	#game_over_screen.visible = false
 	score = 0
 	lives = 3
 	
+	player.connect("laser_shot", _on_player_laser_shot)
+	player.connect("died", _on_player_died)
+	
+	spawn_grunt()
+
+func spawn_grunt():
 	var grunt = enemy_grunt.instantiate()
 	grunt.global_position = enemySpawner.global_position
 	grunt.set_player(player)
+	grunt.connect("died", _grunt_died)
+	grunt.connect("laser_collided", _laser_collided)
 	enemies.add_child(grunt)
-	
-	player.connect("laser_shot", _on_player_laser_shot)
-	player.connect("died", _on_player_died)
+
+func _grunt_died():
+	spawn_grunt()
 
 func _on_player_laser_shot(laser):
 	$LaserSound.play()
 	lasers.add_child(laser)
+
+func _laser_collided():
+	print("laser collided")
+	$LaserColliding.play()
 
 func _on_player_died():
 	#$PlayerDieSound.play()
@@ -57,3 +70,5 @@ func _on_player_died():
 			#await get_tree().create_timer(0.1).timeout
 		#player.respawn(player_spawn_pos.global_position)
 
+func _process(delta):
+	pass
