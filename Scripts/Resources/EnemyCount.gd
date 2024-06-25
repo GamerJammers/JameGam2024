@@ -1,6 +1,4 @@
 extends Resource
-
-# Class name so it can be easily referenced in the editor
 class_name EnemyCount
 
 # Properties of EnemyCount

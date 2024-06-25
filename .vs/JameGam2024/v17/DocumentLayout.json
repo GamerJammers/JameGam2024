@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\dgooding\\Documents\\GitHub\\JameGam2024\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F31F164D-029A-4641-A646-8E875255C86A}|JameGam2024.csproj|c:\\users\\dgooding\\documents\\github\\jamegam2024\\scripts\\resources\\enemy.gd||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{F31F164D-029A-4641-A646-8E875255C86A}|JameGam2024.csproj|solutionrelative:scripts\\resources\\enemy.gd||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:9:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Enemy.gd",
+              "DocumentMoniker": "C:\\Users\\dgooding\\Documents\\GitHub\\JameGam2024\\Scripts\\Resources\\Enemy.gd",
+              "RelativeDocumentMoniker": "Scripts\\Resources\\Enemy.gd",
+              "ToolTip": "C:\\Users\\dgooding\\Documents\\GitHub\\JameGam2024\\Scripts\\Resources\\Enemy.gd",
+              "RelativeToolTip": "Scripts\\Resources\\Enemy.gd",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-06-25T12:15:33.578Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

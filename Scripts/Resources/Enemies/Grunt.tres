@@ -4,6 +4,4 @@
 
 [resource]
 script = ExtResource("1_d81lf")
-health = 100
-maxHealth = 100
 name = "Grunt"
