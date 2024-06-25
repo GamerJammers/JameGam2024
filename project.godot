@@ -13,6 +13,7 @@ config_version=5
 config/name="JameGam2024"
 run/main_scene="res://mainMenu.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+config/icon="res://sprites/icon.svg"
 
 [autoload]
 
@@ -22,6 +23,10 @@ Global="*res://Scripts/Global.gd"
 [dotnet]
 
 project/assembly_name="JameGam2024"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [input]
 

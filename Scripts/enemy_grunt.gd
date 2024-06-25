@@ -89,8 +89,8 @@ func _integrate_forces(state):
 		apply_central_impulse(direction * 200)
 		
 	for i in range(state.get_contact_count()):
-		var contact_position: Vector2 = state.get_contact_local_position(i)
-		var contact_normal: Vector2 = state.get_contact_local_normal(i)
+		var _contact_position: Vector2 = state.get_contact_local_position(i)
+		var _contact_normal: Vector2 = state.get_contact_local_normal(i)
 		var contact_body: Object = state.get_contact_collider_object(i)
 
 		if contact_body:
