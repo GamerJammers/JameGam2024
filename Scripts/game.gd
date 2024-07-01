@@ -1,18 +1,15 @@
 extends Node2D
 
+var Round = preload("res://Scripts/round.gd")
+var Portal = preload("res://Scripts/portal.gd")
+var enemy_grunt = preload("res://scenes/enemy_grunt.tscn")
+
 @onready var lasers = $Lasers
 @onready var player = $Player
 @onready var enemies = $Enemies
 @onready var enemySpawner = $EnemySpawner
 @onready var portals = $Portals
-
-var junk: int = 50
-var currency: int = 0
-var Level = preload("res://Scripts/level.gd")
-var Portal = preload("res://Scripts/portal.gd")
-var enemy_grunt = preload("res://scenes/enemy_grunt.tscn")
-
-var level
+@onready var round = Round.new()
 
 var score := 0:
 	set(value):
@@ -28,7 +25,6 @@ func _ready():
 	#game_over_screen.visible = false
 	score = 0
 	lives = 3
-	level = Level.new(1, 2, 0, 0)
 
 	#create_portals()
 	spawn_grunt()
@@ -45,9 +41,9 @@ func spawn_grunt():
 	enemies.add_child(grunt)
 
 func _grunt_died():
-	level.grunt_died()
+	round.grunt_died()
 	
-	if !level.wave_clear():
+	if !round.wave_clear():
 		spawn_grunt()
 	else:
 		get_tree().change_scene_to_file("res://scenes/progression_selection.tscn")

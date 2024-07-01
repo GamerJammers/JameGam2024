@@ -1,4 +1,4 @@
-extends RigidBody2D
+class_name EnemyGrunt extends RigidBody2D
 
 signal died
 signal laser_collided
@@ -23,17 +23,18 @@ var orig_collision_mask
 var orig_collision_layer
 
 func take_damage(amount):
-	if damage: return 
+	if damage: return
 	
 	damage = true 
 	elapsed_time = 0 
 	health -= amount 
 	collision_mask = 0 
 	collision_layer = 0 
+	linear_velocity = Vector2(0,0)
+	rotation = 0 
 	
 	if health <= 0:
 		die()
-	
 
 func die():
 	if alive==true:
@@ -83,8 +84,6 @@ func _integrate_forces(state):
 	
 	if time_since_finding >= rate_of_finding:
 		time_since_finding = 0
-		#print(direction)
-		# Apply force in that direction
 		var direction = (_player.global_position - global_position).normalized()
 		apply_central_impulse(direction * 200)
 		
@@ -96,16 +95,11 @@ func _integrate_forces(state):
 		if contact_body:
 			var colliding_body: RigidBody2D = contact_body as RigidBody2D
 			
-			apply_central_impulse(colliding_body.linear_velocity.normalized() * colliding_body.mass*3)
-			if contact_body is Laser: 
-				var laser = contact_body as Laser
-				take_damage(laser.power())
-				laser.queue_free()
-				emit_signal("laser_collided")
-			
-			if contact_body is Player:
-				var player = contact_body as Player
-				take_damage(25)
-				emit_signal("player_collided_grunt", player)
+			#apply_central_impulse(colliding_body.linear_velocity.normalized() * colliding_body.mass*3)
+			#
+			#if contact_body is Player:
+				#var player = contact_body as Player
+				#take_damage(25)
+				#emit_signal("player_collided_grunt", player)
 				
 		
