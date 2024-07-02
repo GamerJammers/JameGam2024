@@ -24,15 +24,13 @@ var orig_collision_layer
 
 func take_damage(amount):
 	if damage: return
-	
 	damage = true 
 	elapsed_time = 0 
 	health -= amount 
 	collision_mask = 0 
 	collision_layer = 0 
 	linear_velocity = Vector2(0,0)
-	rotation = 0 
-	
+	emit_signal("laser_collided")
 	if health <= 0:
 		die()
 

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://btq52d46341r5"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_grunt.gd" id="1_ow6co"]
+[ext_resource type="Texture2D" uid="uid://dia4v40cl6ngc" path="res://sprites/calzone.png" id="2_5iey4"]
+
+[node name="RigidBody" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 15
+script = ExtResource("1_ow6co")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -30)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_5iey4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-86, -23)
+polygon = PackedVector2Array(86, -36, 65, -33, 52, -25, 37, -11, 24, 13, 23, 57, 151, 57, 151, 17, 139, -7, 122, -25, 107, -33)

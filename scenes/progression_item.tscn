@@ -11,14 +11,19 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 script = ExtResource("1_ik78g")
 
-[node name="Button" type="Button" parent="."]
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
-text = "Select"
+horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(0.245, 0)
 layout_mode = 2
 stretch_mode = 3
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+action_mode = 0
+text = "Select"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 clip_contents = false

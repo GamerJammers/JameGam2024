@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://defd3mnpsst24"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_grunt.gd" id="1_4pbni"]
+[ext_resource type="Texture2D" uid="uid://cve1e85swf5qf" path="res://sprites/chicken_wing.png" id="1_afusm"]
+
+[node name="RigidBody" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 15
+script = ExtResource("1_4pbni")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, -1)
+texture = ExtResource("1_afusm")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-6, -31, -14, -36, -32, -33, -42, -23, -47, -11, -43, 7, -26, 18, 22, 17, 50, 33, 57, 20, 23, 7, 4, -18)

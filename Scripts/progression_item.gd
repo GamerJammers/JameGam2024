@@ -1,5 +1,7 @@
 class_name ProgressionItem extends VBoxContainer
 
+signal item_selection(selection, value)
+
 const progression_scene: PackedScene = preload("res://scenes/progression_item.tscn")
 const upgrade_pineapple = preload("res://sprites/pizza_upgrade_pineapple.png")
 const upgrade_mushrooms = preload("res://sprites/pizza_upgrade_mushrooms.png")
@@ -33,33 +35,35 @@ static func random_item():
 
 func _ready():
 	var rng = RandomNumberGenerator.new()
+	chooseBtn.text = "Select"
+	chooseBtn.pressed.connect(self._button_pressed)
 	
 	match selected:
 		"mushroom": # equals health
-			chooseBtn.text = "Mushroom"
+			label.text = "Mushroom"
 			value = rng.randf_range(1.0, 8.0)
 			value = round(value * 100) / 100.0
 			description.text = "Increase maximum health by %s%%" % value 
 			texture.texture = upgrade_mushrooms
 		"pineapple": # equals disable enemy ship delay while shooting
-			chooseBtn.text = "Pineapple"
+			label.text = "Pineapple"
 			value = rng.randf_range(0.1, 1.0)
 			value = round(value * 100) / 100.0
 			description.text = "Increase enemy ship disable time by %s" % value 
 			texture.texture = upgrade_pineapple
 		"pepperoni": # equals damage increase
-			chooseBtn.text = "Pepperoni"
-			value = rng.randf_range(0.2, 0.5)
+			label.text = "Pepperoni"
+			value = rng.randf_range(1, 5)
 			value = round(value * 100) / 100.0
-			description.text = "Increase weapon damage by %s%" % value 
+			description.text = "Increase weapon damage by %s%%" % value 
 			texture.texture = upgrade_pepperoni
 		"sausage": # equals shoot a random sausage every 5 seconds
-			chooseBtn.text = "Sausage"
+			label.text = "Sausage"
 			value = 1.0
 			description.text = "Shoot %s additional sausage every 5 seconds at the closest enemy" % value
 			texture.texture = upgrade_sausage
 		"cheese": # equals 
-			chooseBtn.text = "Extra Cheese"
+			label.text = "Extra Cheese"
 			value = rng.randf_range(0.2, 0.5)
 			value = round(value * 100) / 100.0
 			description.text = "Slow down enemies you hit for an additional %s seconds" % value
@@ -67,9 +71,9 @@ func _ready():
 		_:
 			printerr("invalid random item")
 	
-	chooseBtn.pressed.connect(self._button_pressed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _button_pressed(event):
+func _button_pressed():
 	print("You chose the topping %s" % selected)
+	emit_signal("item_selection", selected, value)
 	

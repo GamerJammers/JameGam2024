@@ -4,3 +4,43 @@
 
 [node name="Game" type="Node"]
 script = ExtResource("1_txe1y")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelRound" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelHealth" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelPower" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="UI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelRound" type="Label" parent="UI/UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelHealth" type="Label" parent="UI/UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelPower" type="Label" parent="UI/UI/VBoxContainer"]
+layout_mode = 2

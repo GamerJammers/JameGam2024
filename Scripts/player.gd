@@ -20,6 +20,13 @@ var max_velocity = 1000
 var alive := true
 var thrust = Vector2(0, -250)
 var torque = 20000
+var _health
+var _power 
+
+func init(health: int, power: int):
+	_health = health
+	_power = power 
+	
 
 func _physics_process(delta):
 	if !alive: return
@@ -71,9 +78,12 @@ func _process(delta):
 			await get_tree().create_timer(rate_of_fire).timeout
 			shoot_cd = false
 
+
+
 func shoot_laser():
 	var l = laser_scene.instantiate()
 	var mouse_pos = get_global_mouse_position()  # Get global mouse position
+	l.set_power(_power)
 	l.global_position = cannon.global_position
 	l.look_at(mouse_pos)
 	l.rotate(deg_to_rad(90))
