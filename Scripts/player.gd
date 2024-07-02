@@ -74,7 +74,6 @@ func _process(delta):
 func shoot_laser():
 	var l = laser_scene.instantiate()
 	var mouse_pos = get_global_mouse_position()  # Get global mouse position
-	print("Mouse position: ", mouse_pos)  
 	l.global_position = cannon.global_position
 	l.look_at(mouse_pos)
 	l.rotate(deg_to_rad(90))

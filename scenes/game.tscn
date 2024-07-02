@@ -1,37 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://mju1ga8hdhne"]
+[gd_scene load_steps=2 format=3 uid="uid://be6qvx58g1dkn"]
 
-[ext_resource type="Script" path="res://Scripts/game.gd" id="1_ki1rm"]
-[ext_resource type="PackedScene" uid="uid://o4pxo15bv4gs" path="res://scenes/player.tscn" id="4_pys3x"]
-[ext_resource type="AudioStream" uid="uid://el0jiguuj6o0" path="res://audio/Pizza.wav" id="5_3fogt"]
-[ext_resource type="Texture2D" uid="uid://dbdmgoijp8kqm" path="res://sprites/space_laser.png" id="5_e7h1m"]
-[ext_resource type="AudioStream" uid="uid://t2d2p05vv7qv" path="res://audio/Explosion 1.wav" id="5_hpjr1"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_txe1y"]
 
-[node name="Game" type="Node2D"]
-scale = Vector2(0.635, 0.635)
-
-[node name="Node" type="Node" parent="."]
-script = ExtResource("1_ki1rm")
-
-[node name="Player" parent="Node" instance=ExtResource("4_pys3x")]
-position = Vector2(94.615, 149.225)
-scale = Vector2(0.635, 0.635)
-
-[node name="Enemies" type="Node" parent="Node"]
-
-[node name="Lasers" type="Node" parent="Node"]
-
-[node name="Portals" type="Node" parent="Node"]
-
-[node name="EnemySpawner" type="Node2D" parent="Node"]
-z_index = -1
-position = Vector2(645.795, 177.8)
-scale = Vector2(0.635, 0.635)
-
-[node name="Sprite2D" type="Sprite2D" parent="Node/EnemySpawner"]
-texture = ExtResource("5_e7h1m")
-
-[node name="LaserSound" type="AudioStreamPlayer" parent="Node"]
-stream = ExtResource("5_3fogt")
-
-[node name="LaserColliding" type="AudioStreamPlayer" parent="Node"]
-stream = ExtResource("5_hpjr1")
+[node name="Game" type="Node"]
+script = ExtResource("1_txe1y")

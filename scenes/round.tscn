@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/round.gd" id="1_cqvxl"]
 [ext_resource type="PackedScene" uid="uid://o4pxo15bv4gs" path="res://scenes/player.tscn" id="2_5sbav"]
-[ext_resource type="Script" path="res://Scripts/spawners.gd" id="3_o1ty1"]
+[ext_resource type="Texture2D" uid="uid://dbdmgoijp8kqm" path="res://sprites/space_laser.png" id="3_qeb66"]
 [ext_resource type="AudioStream" uid="uid://el0jiguuj6o0" path="res://audio/Pizza.wav" id="4_ahryr"]
 [ext_resource type="AudioStream" uid="uid://t2d2p05vv7qv" path="res://audio/Explosion 1.wav" id="5_f15if"]
 
@@ -13,15 +13,33 @@ script = ExtResource("1_cqvxl")
 position = Vector2(94.615, 149.225)
 scale = Vector2(0.635, 0.635)
 
-[node name="Spawners" type="Node" parent="."]
-script = ExtResource("3_o1ty1")
-
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Lasers" type="Node" parent="."]
+
+[node name="Portals" type="Node" parent="."]
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(645.795, 177.8)
+scale = Vector2(0.635, 0.635)
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemySpawner"]
+texture = ExtResource("3_qeb66")
 
 [node name="LaserSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ahryr")
 
 [node name="LaserColliding" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_f15if")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

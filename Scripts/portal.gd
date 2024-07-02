@@ -8,7 +8,7 @@ const my_scene: PackedScene = preload("res://scenes/portal.tscn")
 
 static func new_portal(c: Color):
 	var portal: Portal = my_scene.instantiate()
-	portal.color = c 
+	portal.color = c
 	return portal 
 
 # Called when the node enters the scene tree for the first time.
