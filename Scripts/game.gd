@@ -1,16 +1,18 @@
-extends Node2D
+extends Node
 
 var Round = preload("res://Scripts/round.gd")
 var Portal = preload("res://Scripts/portal.gd")
 var enemy_grunt = preload("res://scenes/enemy_grunt.tscn")
 var enemy_grunt2 = preload("res://scenes/enemy_grunt2.tscn")
+var progression_scene = preload("res://scenes/progression_selection.tscn")
 
 @onready var lasers = $Lasers
 @onready var player = $Player
 @onready var enemies = $Enemies
 @onready var enemySpawner = $EnemySpawner
 @onready var portals = $Portals
-@onready var round = Round.new()
+
+var round = Round.new()
 
 var current_wave := 0
 var enemies_to_spawn := []
@@ -23,6 +25,9 @@ func _ready():
 	lives = 3
 
 	#create_portals()
+	
+	round.start()
+	spawn_enemies()
 
 	player.connect("laser_shot", _on_player_laser_shot)
 	player.connect("died", _on_player_died)
