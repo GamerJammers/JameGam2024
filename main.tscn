@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://eilk5i7uvm4a"]
+[gd_scene load_steps=4 format=3 uid="uid://ykkb31x3je28"]
 
-[ext_resource type="Theme" path="res://themes/Refinery_Theme.tres" id="1_oxdbq"]
-[ext_resource type="Script" path="res://Scripts/Start Button.gd" id="2_fgcyn"]
-[ext_resource type="Script" path="res://Scripts/Exit Button.gd" id="3_i4nu7"]
+[ext_resource type="Script" path="res://Scripts/main_button_start.gd" id="2_fgcyn"]
+[ext_resource type="Script" path="res://Scripts/main_button_exit.gd" id="3_i4nu7"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[sub_resource type="Theme" id="Theme_e7nhj"]
+Button/font_sizes/font_size = 28
+Label/font_sizes/font_size = 32
+
+[node name="MainMenu" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -22,7 +23,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_oxdbq")
+theme = SubResource("Theme_e7nhj")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
 layout_mode = 2

@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="JameGam2024"
-run/main_scene="res://mainMenu.tscn"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 
 [autoload]
 
-GameManager="*res://Scripts/GameManager.gd"
-Global="*res://Scripts/Global.gd"
+GameManager="*res://scripts/GameManager.gd"
+Global="*res://Scripts/global.gd"
 
 [dotnet]
 
