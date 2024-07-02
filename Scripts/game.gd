@@ -3,6 +3,7 @@ extends Node
 var Round = preload("res://Scripts/round.gd")
 var Portal = preload("res://Scripts/portal.gd")
 var enemy_grunt = preload("res://scenes/enemy_grunt.tscn")
+var enemy_grunt2 = preload("res://scenes/enemy_grunt2.tscn")
 var progression_scene = preload("res://scenes/progression_selection.tscn")
 
 @onready var lasers = $Lasers
@@ -13,43 +14,60 @@ var progression_scene = preload("res://scenes/progression_selection.tscn")
 
 var round = Round.new()
 
-var score := 0:
-	set(value):
-		score = value
-		#hud.score = score
-
-var lives: int:
-	set(value):
-		lives = value
-		#hud.init_lives(lives)
+var current_wave := 0
+var enemies_to_spawn := []
+var score := 0
+var lives := 3
 
 func _ready():
 	#game_over_screen.visible = false
 	score = 0
 	lives = 3
+
+	#create_portals()
 	
 	round.start()
-	spawn_enemies()
+	generate_wave_enemies()
 
 	player.connect("laser_shot", _on_player_laser_shot)
 	player.connect("died", _on_player_died)
+	start_next_wave()
 
-func spawn_enemies():
-	for i in round.grunt_total():
-		var grunt = enemy_grunt.instantiate()
-		grunt.global_position = enemySpawner.global_position
-		grunt.set_player(player)
-		grunt.connect("died", _grunt_died)
-		grunt.connect("laser_collided", _laser_collided)
-		enemies.add_child(grunt)
+func start_next_wave():
+	current_wave += 1
+	generate_wave_enemies()
+	spawn_next_enemy()
+
+func generate_wave_enemies():
+	enemies_to_spawn.clear()
+
+	if current_wave == 1:
+		enemies_to_spawn = [enemy_grunt2, enemy_grunt]
+	elif current_wave == 2:
+		enemies_to_spawn = [enemy_grunt, enemy_grunt2, enemy_grunt]
+
+
+func spawn_next_enemy():
+	if enemies_to_spawn.size() > 0:
+		var enemy_scene = enemies_to_spawn.pop_front()
+		var enemy = enemy_scene.instantiate()
+		enemy.global_position = enemySpawner.global_position
+		enemy.set_player(player)
+		enemy.connect("died", _grunt_died)
+		enemy.connect("laser_collided", _laser_collided)
+		enemies.add_child(enemy)
+
 
 func _grunt_died():
 	round.grunt_died()
-	
-	if !round.wave_clear():
-		spawn_enemies()
+	var MAX_WAVES = 4
+	if round.wave_clear():
+		if current_wave >= MAX_WAVES:
+			get_tree().change_scene_to_file("res://scenes/progression_selection.tscn")
+		else:
+			start_next_wave()
 	else:
-		get_tree()
+		spawn_next_enemy()
 
 func create_portals():
 	var portal = Portal.new_portal(Color(0,0,1))
