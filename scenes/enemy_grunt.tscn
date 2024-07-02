@@ -1,9 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://btq52d46341r5"]
 
-[ext_resource type="Script" path="res://Scripts/enemy_grunt.gd" id="1_hxtxh"]
-[ext_resource type="Texture2D" uid="uid://dia4v40cl6ngc" path="res://sprites/calzone.png" id="2_wknpc"]
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_hxtxh"]
-[ext_resource type="Texture2D" uid="uid://dqslarodmb8nq" path="res://sprites/enemy_grunt.png" id="2_ranc3"]
+[ext_resource type="Script" path="res://Scripts/enemy_grunt.gd" id="1_yifwn"]
+[ext_resource type="Texture2D" uid="uid://dia4v40cl6ngc" path="res://sprites/calzone.png" id="2_sa021"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ij7sw"]
 radius = 64.0
@@ -11,11 +9,11 @@ radius = 64.0
 [node name="EnemyGrunt" type="RigidBody2D"]
 collision_layer = 8
 collision_mask = 15
-script = ExtResource("1_hxtxh")
+script = ExtResource("1_yifwn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ij7sw")
 debug_color = Color(0.694118, 0.494118, 0, 0.490196)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_wknpc")
+texture = ExtResource("2_sa021")

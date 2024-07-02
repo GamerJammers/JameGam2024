@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddwqo4w004nxm"]
+
+[ext_resource type="Script" path="res://Scripts/round.gd" id="1_cqvxl"]
+[ext_resource type="PackedScene" uid="uid://o4pxo15bv4gs" path="res://scenes/player.tscn" id="2_5sbav"]
+[ext_resource type="Script" path="res://Scripts/spawners.gd" id="3_o1ty1"]
+[ext_resource type="AudioStream" uid="uid://el0jiguuj6o0" path="res://audio/Pizza.wav" id="4_ahryr"]
+[ext_resource type="AudioStream" uid="uid://t2d2p05vv7qv" path="res://audio/Explosion 1.wav" id="5_f15if"]
+
+[node name="Round" type="Node"]
+script = ExtResource("1_cqvxl")
+
+[node name="Player" parent="." instance=ExtResource("2_5sbav")]
+position = Vector2(94.615, 149.225)
+scale = Vector2(0.635, 0.635)
+
+[node name="Spawners" type="Node" parent="."]
+script = ExtResource("3_o1ty1")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Lasers" type="Node" parent="."]
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ahryr")
+
+[node name="LaserColliding" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_f15if")

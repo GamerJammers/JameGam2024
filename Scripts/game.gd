@@ -27,7 +27,7 @@ func _ready():
 	#create_portals()
 	
 	round.start()
-	spawn_enemies()
+	generate_wave_enemies()
 
 	player.connect("laser_shot", _on_player_laser_shot)
 	player.connect("died", _on_player_died)
