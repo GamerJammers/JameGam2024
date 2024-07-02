@@ -20,9 +20,6 @@ var max_velocity = 1000
 var alive := true
 var thrust = Vector2(0, -250)
 var torque = 20000
-#
-#func _ready():
-	#max_contacts_reported = 1
 
 func _physics_process(delta):
 	if !alive: return
@@ -43,12 +40,10 @@ func _physics_process(delta):
 	else:
 		input_vector.x = 0
 
-	print(input_vector)
-
 	look_at(get_global_mouse_position())
 	rotate(deg_to_rad(90))
 	
-	velocity += input_vector.rotated(rotation) * acceleration
+	velocity += input_vector * acceleration
 	velocity = velocity.limit_length(max_speed)
 	
 	if input_vector.y == 0:
@@ -75,8 +70,6 @@ func _process(delta):
 			shoot_laser()
 			await get_tree().create_timer(rate_of_fire).timeout
 			shoot_cd = false
-
-
 
 func shoot_laser():
 	var l = laser_scene.instantiate()

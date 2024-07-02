@@ -8,26 +8,30 @@
 
 [node name="Game" type="Node2D"]
 scale = Vector2(0.635, 0.635)
+
+[node name="Node" type="Node" parent="."]
 script = ExtResource("1_ki1rm")
 
-[node name="Player" parent="." instance=ExtResource("4_pys3x")]
-position = Vector2(149, 235)
+[node name="Player" parent="Node" instance=ExtResource("4_pys3x")]
+position = Vector2(94.615, 149.225)
+scale = Vector2(0.635, 0.635)
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Enemies" type="Node" parent="Node"]
 
-[node name="Lasers" type="Node" parent="."]
+[node name="Lasers" type="Node" parent="Node"]
 
-[node name="Portals" type="Node" parent="."]
+[node name="Portals" type="Node" parent="Node"]
 
-[node name="EnemySpawner" type="Node2D" parent="."]
+[node name="EnemySpawner" type="Node2D" parent="Node"]
 z_index = -1
-position = Vector2(1017, 280)
+position = Vector2(645.795, 177.8)
+scale = Vector2(0.635, 0.635)
 
-[node name="Sprite2D" type="Sprite2D" parent="EnemySpawner"]
+[node name="Sprite2D" type="Sprite2D" parent="Node/EnemySpawner"]
 texture = ExtResource("5_e7h1m")
 
-[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+[node name="LaserSound" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("5_3fogt")
 
-[node name="LaserColliding" type="AudioStreamPlayer" parent="."]
+[node name="LaserColliding" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("5_hpjr1")

@@ -1,15 +1,17 @@
-extends Node2D
+extends Node
 
 var Round = preload("res://Scripts/round.gd")
 var Portal = preload("res://Scripts/portal.gd")
 var enemy_grunt = preload("res://scenes/enemy_grunt.tscn")
+var progression_scene = preload("res://scenes/progression_selection.tscn")
 
 @onready var lasers = $Lasers
 @onready var player = $Player
 @onready var enemies = $Enemies
 @onready var enemySpawner = $EnemySpawner
 @onready var portals = $Portals
-@onready var round = Round.new()
+
+var round = Round.new()
 
 var score := 0:
 	set(value):
@@ -25,28 +27,29 @@ func _ready():
 	#game_over_screen.visible = false
 	score = 0
 	lives = 3
-
-	#create_portals()
-	spawn_grunt()
+	
+	round.start()
+	spawn_enemies()
 
 	player.connect("laser_shot", _on_player_laser_shot)
 	player.connect("died", _on_player_died)
 
-func spawn_grunt():
-	var grunt = enemy_grunt.instantiate()
-	grunt.global_position = enemySpawner.global_position
-	grunt.set_player(player)
-	grunt.connect("died", _grunt_died)
-	grunt.connect("laser_collided", _laser_collided)
-	enemies.add_child(grunt)
+func spawn_enemies():
+	for i in round.grunt_total():
+		var grunt = enemy_grunt.instantiate()
+		grunt.global_position = enemySpawner.global_position
+		grunt.set_player(player)
+		grunt.connect("died", _grunt_died)
+		grunt.connect("laser_collided", _laser_collided)
+		enemies.add_child(grunt)
 
 func _grunt_died():
 	round.grunt_died()
 	
 	if !round.wave_clear():
-		spawn_grunt()
+		spawn_enemies()
 	else:
-		get_tree().change_scene_to_file("res://scenes/progression_selection.tscn")
+		get_tree()
 
 func create_portals():
 	var portal = Portal.new_portal(Color(0,0,1))

@@ -17,10 +17,22 @@ func start():
 	_heavy_number = floor(_round_number / 10)
 
 func grunt_total():
-	_round_number 
+	return _grunt_number 
 
+func elite_total():
+	return _elite_number 
+
+func heavy_total():
+	return _heavy_number 
+	
 func grunt_died():
 	_grunt_number -= 1
+	
+func elite_died():
+	_elite_number -= 1
+
+func heavy_died():
+	_heavy_number -= 1
 
 func wave_clear():
-	return _grunt_number == 0 and _elite_number == 0 and _heavy_number == 0
+	return grunt_total() == 0 and elite_total() == 0 and heavy_total() == 0
