@@ -4,7 +4,7 @@ class_name RoundStruct  # This allows the class to be globally recognized
 
 # Declare member variables and their initial values
 var _round_number = 1 
-var _grunt_number = 0
+var _grunt_number = 2
 var _elite_number = 0
 var _heavy_number = 0
 
