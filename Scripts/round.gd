@@ -5,8 +5,8 @@ signal lost_health
 signal game_over
 
 var enemy_drumstick = preload("res://scenes/enemy_drumstick.tscn")
-var enemy_calzone = preload("res://scenes/enemy_calzone.tscn")
 var enemy_breadstick = preload("res://scenes/enemy_breadstick.tscn")
+var enemy_calzone = preload("res://scenes/enemy_calzone.tscn")
 var progression_scene = preload("res://scenes/progression_selection.tscn")
 var portal_scene = preload("res://scenes/portal.tscn")
 var player_scene = preload("res://scenes/player.tscn")
@@ -31,27 +31,41 @@ var enemies_to_spawn := []
 var MAX_WAVES = 4
 var rng = RandomNumberGenerator.new()
 var player
+var _damage_timeout
 
-func start(number: int, health: int, power: int):
+func init(
+	number: int, 
+	health: float, 
+	power: float, 
+	damage_timeout: float,
+	max_speed: float,
+	acceleration: float,
+	rate_of_fire: float, 
+	damage_taken_fn: Callable
+	
+):
 	print("round on start called with ", number)
 	
 	_round_number = number
 	
 	_grunt_total = _round_number
 	_elite_total = floor(_round_number / 5)
-	
-	player = player_scene.instantiate()
-	player.init(health, power)
-	player.connect("laser_shot", _on_player_laser_shot)
-	player.connect("died", _on_player_died)
-	
 	_heavy_total = floor(_round_number / 10)
 	
-	#_grunt_portal_total = floor(_round_number / 10) 
-	#if _grunt_portal_total < 1:
-		#_grunt_portal_total = 1
-	#_elite_portal_total = floor(_round_number / 15)
-	#_heavy_portal_total = floor(_round_number / 10)
+	player = player_scene.instantiate()
+	player.init(
+		health, 
+		power, 
+		0.2, 
+		max_speed, 
+		acceleration, 
+		rate_of_fire
+	)
+	player.connect("laser_shot", _on_player_laser_shot)
+	player.connect("damage_taken", damage_taken_fn)
+	player.connect("died", _on_player_died)
+	
+	_damage_timeout = damage_timeout
 
 func _ready():
 	print("round on ready called")
@@ -79,18 +93,14 @@ func add_portals(total_enemies: int, color: Color, create_enemy_fn: Callable):
 func _create_drumstick(portal):
 	var enemy = enemy_drumstick.instantiate()
 	enemy.global_position = portal.global_position
-	enemy.set_player(player)
-	var grunt_died = func():
-		portal.enemy_died()
-		pass 
-	enemy.connect("died", grunt_died)
-	enemy.connect("laser_collided", _laser_collided)
-	enemies.add_child(enemy)
-
-func _create_calzone(portal):
-	var enemy = enemy_drumstick.instantiate()
-	enemy.global_position = portal.global_position
-	enemy.set_player(player)
+	enemy.init(
+		60, # health
+		500, # max velocity
+		_damage_timeout, # damage_timeout
+		0.2, # find player rate
+		10, 
+		player
+	)
 	var grunt_died = func():
 		portal.enemy_died()
 		pass 
@@ -99,9 +109,34 @@ func _create_calzone(portal):
 	enemies.add_child(enemy)
 
 func _create_breadstick(portal):
-	var enemy = enemy_drumstick.instantiate()
+	var enemy = enemy_breadstick.instantiate()
 	enemy.global_position = portal.global_position
-	enemy.set_player(player)
+	enemy.init(
+		150, # health
+		100, # max velocity
+		_damage_timeout, # damage_timeout
+		1, # find player rate
+		50, 
+		player
+	)
+	var grunt_died = func():
+		portal.enemy_died()
+		pass 
+	enemy.connect("died", grunt_died)
+	enemy.connect("laser_collided", _laser_collided)
+	enemies.add_child(enemy)
+
+func _create_calzone(portal):
+	var enemy = enemy_calzone.instantiate()
+	enemy.global_position = portal.global_position
+	enemy.init(
+		350, # health
+		250, # max velocity
+		_damage_timeout, # damage_timeout
+		2, # find player rate
+		25, 
+		player
+	)
 	var grunt_died = func():
 		portal.enemy_died()
 		pass 

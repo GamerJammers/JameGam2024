@@ -4,68 +4,74 @@ signal died
 signal laser_collided
 signal player_collided_grunt(player)
 
-var _player = null 
-var rate_of_finding = 2
-var time_since_finding = 10
-var max_velocity = 200
-var health = 100 
-var alive := true
-
-var damage = false 
-var fade_time = 2.0
-var elapsed_time = 0.0
-var start_color = Color(1, 0, 0, 1)  # Red color
-var end_color = Color(1, 1, 1, 1)  # Normal color
-
 @onready var sprite = $Sprite2D
 
-var orig_collision_mask 
-var orig_collision_layer
+var _alive := true
+var _damage = false 
+var _player = null 
+var _health = 100 
+var _max_velocity = 0
+var _fade_time = 0.01
+var _elapsed_time = 0.0
+var _rate_of_finding = 0.0
+var _time_since_finding = 100000 # set large for initial so it resets initially
+var _body_damage = 0
+var _start_color = Color(1, 0, 0, 1)  # Red color
+var _end_color = Color(1, 1, 1, 1)  # Normal color
+var _orig_collision_mask 
+var _orig_collision_layer
 
+func init(health: float, max_velocity: float, damage_timeout: float, rate_of_finding: float, body_damage: float, player: Player):
+	_alive = true
+	_damage = false 
+	_health = health
+	_max_velocity = max_velocity
+	_fade_time = damage_timeout
+	_elapsed_time = 0
+	_rate_of_finding = rate_of_finding
+	_body_damage = body_damage 
+	_player = player 
+	
 func take_damage(amount):
-	if damage: return
-	damage = true 
-	elapsed_time = 0 
-	health -= amount 
+	if _damage: return
+	_damage = true 
+	_elapsed_time = 0 
+	_health -= amount 
 	collision_mask = 0 
 	collision_layer = 0 
 	linear_velocity = Vector2(0,0)
 	emit_signal("laser_collided")
-	if health <= 0:
+	if _health <= 0:
 		die()
 
 func die():
-	if alive==true:
-		alive = false
+	if _alive==true:
+		_alive = false
 		queue_free()
 		emit_signal("died")
 
 func _ready():
-	orig_collision_mask = collision_mask
-	orig_collision_layer = collision_layer
+	_orig_collision_mask = collision_mask
+	_orig_collision_layer = collision_layer
 	max_contacts_reported = 1
 	contact_monitor = true 
 	
 func _process(delta):
-	if damage:
-		if elapsed_time < fade_time:
-			elapsed_time += delta
-			var t = elapsed_time / fade_time
-			sprite.modulate = lerp(start_color, end_color, t)
+	if _damage:
+		if _elapsed_time < _fade_time:
+			_elapsed_time += delta
+			sprite.modulate = lerp(_start_color, _end_color, _elapsed_time / _fade_time)
 		else:
-			collision_mask = orig_collision_mask
-			collision_layer = orig_collision_layer
-			sprite.modulate = end_color
-			damage = false  
-	
-func set_player(player):
-	_player = player 
+			collision_mask = _orig_collision_mask
+			collision_layer = _orig_collision_layer
+			sprite.modulate = _end_color
+			_damage = false  
 	
 func _physics_process(delta):
-	time_since_finding += delta 
+	_time_since_finding += delta 
 	
-	if linear_velocity.length() >= max_velocity:
-		linear_velocity = linear_velocity.normalized() * max_velocity
+	if linear_velocity.length() >= _max_velocity:
+		linear_velocity = linear_velocity.normalized() * _max_velocity
 		
 	var screen_size = get_viewport_rect().size
 	if global_position.y < 0:
@@ -78,10 +84,10 @@ func _physics_process(delta):
 		global_position.x = 0
 
 func _integrate_forces(state):
-	if damage: return
+	if _damage: return
 	
-	if time_since_finding >= rate_of_finding:
-		time_since_finding = 0
+	if _time_since_finding >= _rate_of_finding:
+		_time_since_finding = 0
 		var direction = (_player.global_position - global_position).normalized()
 		apply_central_impulse(direction * 200)
 		
@@ -92,12 +98,10 @@ func _integrate_forces(state):
 
 		if contact_body:
 			var colliding_body: RigidBody2D = contact_body as RigidBody2D
-			
-			#apply_central_impulse(colliding_body.linear_velocity.normalized() * colliding_body.mass*3)
-			#
-			#if contact_body is Player:
-				#var player = contact_body as Player
-				#take_damage(25)
+			if contact_body is Player:
+				var player = contact_body as Player
+				take_damage(_body_damage)
+				player.take_damage(_body_damage)
 				#emit_signal("player_collided_grunt", player)
 				
 		

@@ -44,3 +44,12 @@ layout_mode = 2
 
 [node name="LabelPower" type="Label" parent="UI/UI/VBoxContainer"]
 layout_mode = 2
+
+[node name="LabelTimeout" type="Label" parent="UI/UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelSpeed" type="Label" parent="UI/UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRateOfFire" type="Label" parent="UI/UI/VBoxContainer"]
+layout_mode = 2
