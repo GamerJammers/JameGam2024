@@ -65,7 +65,7 @@ So, where did we go wrong? We downplayed the learning curve and spent too much t
 
 - **Audio**: Audacity
 
-- **Graphics**: draw.io, GIMP, MS Paint
+- **Graphics**: draw.io, GIMP, MS Paint, libresprite
 
 
 ### Team
