@@ -4,11 +4,11 @@
 ![Space Pizza Gameplay](blog/gameplay.png)
 
 
-## Once Upon a Time, a Space Game Inspired by Asteroid With Rogue-Like Gameplay Happened... Or Did It? Space Pizza (Suh, Not ZA)
+## Once Upon a Time, a Space Game Inspired by Asteroid With Rogue-Like Gameplay Happened... Or Did It? Space Pizza (Suh, Not Za)
 
 ![Suh not Za](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGpweGFoNDJmZjlmYTBvcWo3a2xlb2xvaDVhbmtqbTAxcmhiaWxtaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohs7NywCozyrh3DAk/giphy.gif)
 
-*This journey begins* with three enterprise software developers with backgrounds in Manufacturing, Banking, and Defense. Our most familiar languages are C#, Javascript, and Go, with only a little bit of experience with Unity. Before this Game Jam we hadn't worked together before, and this was our first Game Jam. We chose Godot 4 and tried to use as much GDScript as possible. We didn't "succeed" with the game we designed several times as a team, but we learned a lot from installing Godot 4 on Linux to delivering a prototype game on itch.io.
+*This journey begins...* with three enterprise software developers with backgrounds in Manufacturing, Banking, and Defense. Our most familiar languages are C#, Javascript, and Go, with only a little bit of experience with Unity. Before this Game Jam we hadn't worked together before, and this was our first Game Jam. We chose Godot 4 and tried to use as much GDScript as possible. We didn't "succeed" with the game we designed several times as a team, but we learned a lot from installing Godot 4 on Linux to delivering a prototype game on itch.io.
 
 ### What Is Space Pizza?
 
